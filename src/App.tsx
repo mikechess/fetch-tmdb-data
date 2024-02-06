@@ -26,10 +26,10 @@ function App() {
   };
 
   return (
-    <>
+    <div className="App">
       {movies.map((items) => (
         <div className="movieContainer" key={items.id}>
-          <h1>{items.title}</h1>
+          <h2>{items.title}</h2>
           {items.poster_path && (
             <img src={`https://image.tmdb.org/t/p/w300${items.poster_path}`} alt={`${items.title} Poster`} />
           )}
@@ -37,9 +37,8 @@ function App() {
           <p>{items.release_date}</p>
         </div>
       ))}
-    </>
+    </div>
   )
 }
 
 export default App
-
