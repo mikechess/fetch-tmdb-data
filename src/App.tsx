@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-
+interface Movies {
+  id: number;
+  title: string;
+  poster_path: string;
+  release_date: string;
+}
 
 function App() {
-  const [movies, setMovies] = useState();
+  const [movies, setMovies] = useState<Movies[]>([]);
 
   const apikey = import.meta.env.VITE_API_KEY;
   const popular = "https://api.themoviedb.org/3/movie/popular";
@@ -16,7 +21,7 @@ function App() {
   const fetchData = () => {
     axios.get(`${popular}?api_key=${apikey}`).then((response) => {
       const results = response.data.results;
-      console.log(results);
+      setMovies(results);
     })
   }
 
