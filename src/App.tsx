@@ -16,20 +16,30 @@ function App() {
 
   useEffect(() => {
     fetchData();
-  }, [])
+  }, []);
 
   const fetchData = () => {
     axios.get(`${popular}?api_key=${apikey}`).then((response) => {
       const results = response.data.results;
       setMovies(results);
-    })
-  }
+    });
+  };
 
   return (
     <>
-      <h1>Hello World!</h1>
+      {movies.map((items) => (
+        <div className="movieContainer" key={items.id}>
+          <h1>{items.title}</h1>
+          {items.poster_path && (
+            <img src={`https://image.tmdb.org/t/p/w300${items.poster_path}`} alt={`${items.title} Poster`} />
+          )}
+
+          <p>{items.release_date}</p>
+        </div>
+      ))}
     </>
   )
 }
 
 export default App
+
